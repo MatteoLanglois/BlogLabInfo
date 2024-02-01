@@ -1,0 +1,35 @@
+:root {
+    --main: #EEE4F2;
+    --contrast: #734D8C;
+    --third: #4C2C59;
+}
+
+body {
+    background-color: var(--main);
+}
+
+header {
+    background-color: var(--contrast);
+}
+
+header h1, header .header-link, header .header-link:hover, header .header-link:visited {
+    color: var(--main);
+}
+
+.blogLink {
+    background-color: var(--third);
+    color: var(--main);
+}
+
+.blogLink:hover {
+    transition: background 0.4s ease-in-out;
+    background: rgb(2,0,36);
+    background: -moz-linear-gradient(291deg, rgba(2,0,36,1) 0%, rgba(76,44,89,1) 0%, rgba(127,14,159,1) 100%);
+    background: -webkit-linear-gradient(291deg, rgba(2,0,36,1) 0%, rgba(76,44,89,1) 0%, rgba(127,14,159,1) 100%);
+    background: linear-gradient(291deg, rgba(2,0,36,1) 0%, rgba(76,44,89,1) 0%, rgba(127,14,159,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024",endColorstr="#7f0e9f",GradientType=1);
+}
+
+.blogInfo {
+    color: #7B838C;
+}

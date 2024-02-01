@@ -1,0 +1,20 @@
+{% include 'utils/css.html' %}
+{% include 'utils/header.html' %}
+
+<head>
+    <title>Liste des blogs</title>
+</head>
+<body>
+
+<div class="content">
+    <div class="blogListTitle">
+        <h1>Listes des blogs : </h1>
+    </div>
+    <section class="blogList">
+
+        {% for blog in blogs %}
+            <a class="blogLink" href="{% url 'Blog:blog_detail' blog.id %}">{{ blog }}</a>
+        {% endfor %}
+    </section>
+</div>
+</body>

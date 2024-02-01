@@ -1,0 +1,42 @@
+.blogListTitle h1 {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.blogList {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 40%;
+    margin-top: 20px;
+
+}
+
+.blogList .blogLink {
+    padding: 50px;
+    box-shadow:
+      2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+      6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+      12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+      22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+      41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+      100px 100px 80px rgba(0, 0, 0, 0.07)
+    ;
+    border-radius: 10px;
+}
+
+.blogLink:hover {
+    transition: box-shadow 0.3s ease-in-out;
+    box-shadow:
+      1.7px 1.9px 13.1px rgba(0, 0, 0, 0.092),
+      4.1px 4.7px 21.4px rgba(0, 0, 0, 0.113),
+      7.8px 8.8px 25.8px rgba(0, 0, 0, 0.123),
+      13.8px 15.6px 28.1px rgba(0, 0, 0, 0.128),
+      25.9px 29.2px 33.5px rgba(0, 0, 0, 0.133),
+      62px 70px 101px rgba(0, 0, 0, 0.16)
+    ;
+}

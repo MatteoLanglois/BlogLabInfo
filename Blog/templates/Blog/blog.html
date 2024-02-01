@@ -1,0 +1,23 @@
+{% load static %}
+{% include 'utils/css.html' %}
+{% include 'utils/header.html' %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ blog }}</title>
+</head>
+<body>
+
+<div class="content">
+    <div class="blogDescription">
+        <h3>{{ blog }}</h3>
+        <div class="blogInfo">
+            {{ blog.date }} - {{ blog.author }}
+        </div>
+        <div class="blogContent">
+            {{ blog.content | safe }}
+        </div>
+    </div>
+</div>
+
+</body>
