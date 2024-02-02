@@ -39,7 +39,6 @@
             </div>
             <button class="btnAddComments" onclick="document.getElementById('modalReply').style.display='block'"><i class="fa-solid fa-plus"></i></button>
         </div>
-        {% endif %}
         {% for reply in comment.replies.all %}
             <div class="comment reply">
                 <div class="commentInfo">
@@ -76,6 +75,7 @@
                 </form>
             </div>
         </div>
+        {% endif %}
     {% endfor %}
 </div>
 

@@ -17,7 +17,7 @@ header h1 a, header .header-link, header .header-link:hover, header .header-link
     color: var(--main);
 }
 
-.blogLink, .btnAddComments {
+.btnAddComments, .flip-card-front, .flip-card-back {
     transition: all 0.4s ease-in-out;
     background: rgb(2,0,36);
     background: -moz-linear-gradient(291deg, rgba(2,0,36,1) 0%, rgba(76,44,89,1) 0%, rgba(127,14,159,1) 100%);
@@ -28,7 +28,7 @@ header h1 a, header .header-link, header .header-link:hover, header .header-link
     background-size: 200% auto;
 }
 
-.blogLink:hover, .btnAddComments:hover {
+.btnAddComments:hover, .flip-card-front:hover, .flip-card-back:hover {
     transition: all 0.4s ease-in-out;
     background-position: right center;
 }
