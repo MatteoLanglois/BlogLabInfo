@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Blog
+from .models import Blog, Comment
 from .forms import CommentForm
 
 
@@ -56,7 +56,10 @@ def blog_reply(request, blog_id, comment_id):
     })
 
 def blog_a_propos(request):
-    return render(request, 'Blog/a_propos.html', {})
+    return render(request, 'Blog/a_propos.html', {
+        "blogs": Blog.objects.all(),
+        "comments": Comment.objects.all(),
+    })
 
 
 def bad_request(request, exception):
