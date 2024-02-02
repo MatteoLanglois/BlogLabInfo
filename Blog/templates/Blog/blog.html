@@ -18,6 +18,67 @@
             {{ blog.content | safe }}
         </div>
     </div>
+
+    <h3 class="blogDescription">Commentaires</h3>
+    <div class="addComments">
+        <form action="{% url 'Blog:blog_detail' blog.id %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btnAddComments" type="submit"><i class="fa-solid fa-plus"></i></button>
+        </form>
+
+    </div>
+    {% for comment in comments %}
+        {% if not comment.parent %}
+        <div class="comment">
+            <div class="commentInfo">
+                {{ comment.date }} - {{ comment.name }}
+            </div>
+            <div class="commentContent">
+                {{ comment.comment}}
+            </div>
+            <button class="btnAddComments" onclick="document.getElementById('modalReply').style.display='block'"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        {% endif %}
+        {% for reply in comment.replies.all %}
+            <div class="comment reply">
+                <div class="commentInfo">
+                    {{ reply.date }} - {{ reply.name }}
+                </div>
+                <div class="commentContent">
+                    {{ reply.comment }}
+                </div>
+                <button class="btnAddComments" onclick="document.getElementById('modalReply').style.display='block'"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="modal" id="modalReply">
+                <div class="addComments modal-content">
+                    <span class="close" onclick="document.getElementById('modalReply').style.display='none'">&times;</span>
+                    <h3>Répondre à {{ reply.name }}</h3>
+                    <form action="{% url 'Blog:blog_reply' blog.id reply.id %}" method="post">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btnAddComments" type="submit"><i class="fa-solid fa-plus"></i></button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+
+
+
+        <div class="modal" id="modalReply">
+            <div class="addComments modal-content">
+                <span class="close" onclick="document.getElementById('modalReply').style.display='none'">&times;</span>
+                <h3>Répondre à {{ comment.name }}</h3>
+                <form action="{% url 'Blog:blog_reply' blog.id comment.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btnAddComments" type="submit"><i class="fa-solid fa-plus"></i></button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
 </div>
+
+
 
 </body>

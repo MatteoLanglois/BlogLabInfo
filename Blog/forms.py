@@ -6,7 +6,7 @@ import datetime
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['title', 'description', 'author', 'content']
+        fields = ['title', 'description', 'author', 'theme', 'content']
         exclude = ['date']
 
     def clean(self):
@@ -22,8 +22,14 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ['name', 'comment']
+        labels = {
+            'name': '',
+            'comment': ''
+        }
         widgets = {
-            'comment': forms.Textarea(attrs={'rows': 3})
+            'comment': forms.Textarea(attrs={'rows': 3,
+                                             'placeholder': 'Votre commentaire'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Votre pseudonyme'})
         }
 
     def clean(self):

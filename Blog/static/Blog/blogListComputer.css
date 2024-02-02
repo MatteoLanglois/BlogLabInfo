@@ -11,6 +11,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
     width: 40%;
     margin-top: 20px;
 
@@ -39,4 +40,13 @@
       25.9px 29.2px 33.5px rgba(0, 0, 0, 0.133),
       62px 70px 101px rgba(0, 0, 0, 0.16)
     ;
+}
+
+.theme-icon {
+    font-size: 2rem;
+    margin: 5px;
+}
+
+.blogTitle {
+    font-size: 1.5rem;
 }

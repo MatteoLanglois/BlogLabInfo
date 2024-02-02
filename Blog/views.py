@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.template import loader
 from .models import Blog
+from .forms import CommentForm
 
 
 def blog_list(request):
@@ -12,9 +11,52 @@ def blog_list(request):
 
 def blog_detail(request, blog_id):
     blog_choosed = Blog.objects.get(id=blog_id)
+    comments = blog_choosed.comments.all().order_by("-date")
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.parent = None
+            comment.blog = blog_choosed
+            comment.save()
+            return render(request, 'Blog/blog.html', {
+                "blog": blog_choosed,
+                "comments": comments
+            })
+    else:
+        form = CommentForm()
     return render(request, 'Blog/blog.html', {
-        "blog": blog_choosed
+        "blog": blog_choosed,
+        "comments": comments,
+        "form": form
     })
+
+
+def blog_reply(request, blog_id, comment_id):
+    blog_choosed = Blog.objects.get(id=blog_id)
+    comments = blog_choosed.comments.all().order_by("-date")
+    comment_choosed = comments.get(id=comment_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.parent = comment_choosed
+            comment.blog = blog_choosed
+            comment.save()
+            return render(request, 'Blog/blog.html', {
+                "blog": blog_choosed,
+                "comments": comments
+            })
+    else:
+        form = CommentForm()
+    return render(request, 'Blog/blog.html', {
+        "blog": blog_choosed,
+        "comments": comments,
+        "form": form
+    })
+
+def blog_a_propos(request):
+    return render(request, 'Blog/a_propos.html', {})
 
 
 def bad_request(request, exception):

@@ -13,7 +13,11 @@
     <section class="blogList">
 
         {% for blog in blogs %}
-            <a class="blogLink" href="{% url 'Blog:blog_detail' blog.id %}">{{ blog }}</a>
+            <a class="blogLink" href="{% url 'Blog:blog_detail' blog.id %}">
+                {{ blog.theme.print_icon | safe }}
+                <p class="blogTitle">{{ blog }}</p>
+                <p class="blogAuthor">{{ blog.author }}</p>
+            </a>
         {% endfor %}
     </section>
 </div>
