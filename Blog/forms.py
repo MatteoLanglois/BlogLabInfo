@@ -6,7 +6,8 @@ import datetime
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['title', 'description', 'author', 'theme', 'content']
+        fields = ['title', 'description', 'author', 'theme', 'content',
+                  'visible']
         exclude = ['date']
 
     def clean(self):

@@ -4,7 +4,8 @@ from .forms import BlogForm
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('title', 'description', 'date', 'author', 'theme')
+    list_display = ('title', 'description', 'date', 'author', 'theme',
+                    'visible')
     form = BlogForm
 
 
