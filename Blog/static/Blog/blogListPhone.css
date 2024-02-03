@@ -1,0 +1,82 @@
+.blogListTitle h1 {
+    font-size: 4rem;
+    font-weight: bolder;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+}
+
+.blogList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+
+}
+
+.theme-icon {
+    font-size: 4rem;
+    margin: 0 20px;
+    line-height: 50px;
+}
+
+.blogTitle {
+    font-size: 3rem;
+    line-height: 50px;
+    margin: 0 20px;
+}
+
+.blogResume {
+    font-size: 1.8rem;
+}
+
+.flip-card {
+    background-color: transparent;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.flip-card-inner {
+    height: 100%;
+    text-align: left;
+    box-shadow:
+      2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+      6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+      12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+      22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+      41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+      100px 100px 80px rgba(0, 0, 0, 0.07)
+    ;
+}
+
+.flip-card-front{
+    padding: 30px 15px 15px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.flip-card-back {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    line-height: normal;
+    margin: 0;
+}
+
+.blogResume {
+    margin: 20px 20px 10px 20px;
+    font-size: 2.5rem;
+}
+
+.blogAuthor {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0;
+    margin: 0 20px 10px 20px;
+}

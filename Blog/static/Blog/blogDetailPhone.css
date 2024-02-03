@@ -1,7 +1,7 @@
-.blogDescription, .comment, .addComments {
+.blogDescription, .addComments, .comment {
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 2.5rem;
     font-weight: 400;
     line-height: 1.5;
     box-shadow:
@@ -10,7 +10,7 @@
       0 0 80px rgba(0, 0, 0, 0.39)
     ;
     padding: 20px;
-    width: 40%;
+    width: 80%;
     border-radius: 10px;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .blogDescription h3 {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 600;
     margin: 0;
     padding: 0;
@@ -35,12 +35,13 @@
     justify-content: space-evenly;
     margin-top: 20px;
     font-weight: lighter;
+    font-size: 1.8rem;
 }
 
 .blogContent {
     margin-top: 20px;
     margin-bottom: 20px;
-    font-size: 20px;
+    font-size: 1.8rem;
     font-weight: 400;
     line-height: 1.5;
     display: flex;
@@ -51,24 +52,23 @@
 
 .blogContent img {
     display: block;
-    width: 60%;
+    width: 80%;
     height: auto;
     margin: 20px auto;
 }
-
 
 .comment .commentInfo {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
-    font-size: 1rem;
+    font-size: 2.5rem;
 }
 
 .btnAddComments {
     float: right;
     padding: 10px;
-    font-size: 2rem;
+    font-size: 4rem;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -78,7 +78,7 @@
     transition: all 0.4s ease-in-out;
     padding: 5px 10px;
     outline: none;
-    font-size: 1.1rem;
+    font-size: 2rem;
     border-radius: 5px;
 }
 
@@ -92,7 +92,7 @@
     transition: all 0.4s ease-in-out;
     padding: 10px;
     outline: none;
-    font-size: 1.1rem;
+    font-size: 1.8rem;
     border-radius: 5px;
     width: 80%;
     height: 200px;
@@ -107,7 +107,6 @@
 .reply {
     margin-left: 100px;
 }
-
 
 .modal {
   display: none; /* Hidden by default */
@@ -124,19 +123,18 @@
 
 .modal-content {
     margin: auto;
-    height: 400px;
+    height: 600px;
 }
 
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 3rem;
-  font-weight: bold;
+    color: black;
+    float: right;
+    font-size: 8rem;
+    font-weight: bold;
+    margin: 20px;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
   text-decoration: none;
-  cursor: pointer;
 }
