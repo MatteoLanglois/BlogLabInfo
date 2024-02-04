@@ -26,6 +26,23 @@
                 </div>
             </a>
         {% endfor %}
+        {% if user.is_authenticated %}
+            <h3>Blogs non publiés</h3>
+            {% for blog in unpublished_blogs %}
+                <a class="blogLink flip-card" href="{% url 'Blog:blog_detail' blog.id %}">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            {{ blog.theme.print_icon | safe }}
+                            <p class="blogTitle">{{ blog }}</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <p class="blogResume">{{ blog.description }}</p>
+                            <p class="blogAuthor">{{ blog.date }} | {{ blog.author }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
     </section>
 </div>
 </body>

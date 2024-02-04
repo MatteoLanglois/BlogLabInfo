@@ -5,7 +5,9 @@ from .forms import CommentForm
 
 def blog_list(request):
     return render(request, 'Blog/index.html', {
-        "blogs": Blog.objects.filter(visible=True).order_by("-date")
+        "blogs": Blog.objects.filter(visible=True).order_by("-date"),
+        "unpublished_blogs": Blog.objects.filter(visible=False).order_by("-date"),
+        "user": request.user,
     })
 
 
