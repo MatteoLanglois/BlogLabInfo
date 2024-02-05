@@ -1,5 +1,5 @@
 .blogListTitle h1 {
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: bolder;
     text-align: center;
     margin: 0;
@@ -18,19 +18,15 @@
 }
 
 .theme-icon {
-    font-size: 4rem;
+    font-size: 3rem;
     margin: 0 20px;
     line-height: 50px;
 }
 
 .blogTitle {
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 50px;
     margin: 0 20px;
-}
-
-.blogResume {
-    font-size: 1.8rem;
 }
 
 .flip-card {
@@ -71,7 +67,7 @@
 
 .blogResume {
     margin: 20px 20px 10px 20px;
-    font-size: 2.5rem;
+    font-size: 1.4rem;
 }
 
 .blogAuthor {
