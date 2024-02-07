@@ -1,7 +1,21 @@
-<header>
-    <h1><a href="{% url 'Blog:blog' %}">Lab'info</a></h1>
-    <nav>
-        <a class="header-link" href="{% url 'Blog:blog' %}">Listes des blogs</a>
-        <a class="header-link" href="{% url 'Blog:a_propos' %}">A propos</a>
+{% load static tailwind_tags %}
+{% load static %}
+{% include "Blog/utils/css.html" %}
+
+<!DOCTYPE html>
+<header class="bg-contrast text-white p-4">
+    <h1 class="text-5xl font-bold text-white">
+        <a href="{% url 'Blog:blog' %}" class=" text-white hover:text-gray-200">Lab'info</a>
+    </h1>
+    <nav class="mt-4 flex flex-col lg:flex-row">
+        <a class="text-3xl mr-4 hov-txt mb-4" href="{% url 'Blog:blog' %}">Listes des blogs</a>
+        <a class="lg:ml-4 text-3xl hov-txt mb-4" href="{% url 'Blog:a_propos' %}">A propos</a>
     </nav>
 </header>
+<body class="bg-primary font-sans-serif leading-normal tracking-normal">
+
+{% block content %}
+
+{% endblock %}
+
+</body>

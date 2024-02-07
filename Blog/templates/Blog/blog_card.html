@@ -1,0 +1,13 @@
+<a class="transition-card container w-full mt-1 mb-1 lg:mt-3 lg:m-1" href="{% url 'Blog:blog_detail' blog.id %}">
+    <div class="p-4 flex row-auto">
+        {{ blog.theme.print_icon | safe }}
+        <p class="text-lg font-semibold ml-4">{{ blog }}</p>
+    </div>
+    <div class="flex flex-row justify-between">
+        <div class="p-4 border-t border-gray-200">
+            <p class="text-sm">{{ blog.description }}</p>
+            <p class="text-sm text-gray-500">{{ blog.date }} | {{ blog.author }}</p>
+        </div>
+        <button class="text-4xl mr-5 hover:text-gray-300 ease-in-out duration-150"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+</a>

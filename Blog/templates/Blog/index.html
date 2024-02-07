@@ -1,48 +1,28 @@
-{% include 'Blog/utils/css.html' %}
-{% include 'Blog/utils/header.html' %}
-<!DOCTYPE html>
-<head>
-    <title>Liste des blogs</title>
-</head>
-<body>
+{% extends "Blog/utils/header.html" %}
+{% block content %}
 
-<div class="content">
-    <div class="blogListTitle">
-        <h1>Listes des blogs : </h1>
+    <div class="flex flex-row justify-center">
+        <div class="w-full lg:p-4 lg:w-2/3">
+            <div class="title-container">
+                <h1 class="container title lg:w-2/3">Listes des blogs : </h1>
+            </div>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for blog in blogs %}
+                    {% include 'Blog/blog_card.html' %}
+                {% endfor %}
+                {% if user.is_authenticated %}
+
+            </section>
+            <div class="title-container">
+                <h1 class="container title lg:w-2/3">Blogs non publiés : </h1>
+            </div>
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for blog in unpublished_blogs %}
+                        {% include 'Blog/blog_card.html' %}
+                    {% endfor %}
+                {% endif %}
+            </section>
+        </div>
     </div>
-    <section class="blogList">
-
-        {% for blog in blogs %}
-            <a class="blogLink flip-card" href="{% url 'Blog:blog_detail' blog.id %}">
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
-                        {{ blog.theme.print_icon | safe }}
-                        <p class="blogTitle">{{ blog }}</p>
-                    </div>
-                    <div class="flip-card-back">
-                        <p class="blogResume">{{ blog.description }}</p>
-                        <p class="blogAuthor">{{ blog.date }} | {{ blog.author }}</p>
-                    </div>
-                </div>
-            </a>
-        {% endfor %}
-        {% if user.is_authenticated %}
-            <h3>Blogs non publiés</h3>
-            {% for blog in unpublished_blogs %}
-                <a class="blogLink flip-card" href="{% url 'Blog:blog_detail' blog.id %}">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            {{ blog.theme.print_icon | safe }}
-                            <p class="blogTitle">{{ blog }}</p>
-                        </div>
-                        <div class="flip-card-back">
-                            <p class="blogResume">{{ blog.description }}</p>
-                            <p class="blogAuthor">{{ blog.date }} | {{ blog.author }}</p>
-                        </div>
-                    </div>
-                </a>
-            {% endfor %}
-        {% endif %}
-    </section>
-</div>
-</body>
+{% endblock %}

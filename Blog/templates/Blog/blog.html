@@ -1,84 +1,72 @@
-{% load static %}
-{% include 'Blog/utils/css.html' %}
-{% include 'Blog/utils/header.html' %}
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <title>{{ blog }}</title>
-</head>
-<body>
-
-<div class="content">
-    <div class="blogDescription">
-        <h3>{{ blog }}</h3>
-        <div class="blogInfo">
-            {{ blog.date }} - {{ blog.author }}
+{% extends "Blog/utils/header.html" %}
+{% block content %}
+<div class="flex flex-row justify-center">
+    <div class="w-full lg:p-4 lg:w-1/2">
+        <div class="container">
+            <h3 class="text-3xl font-bold text-center">{{ blog }}</h3>
+            <div class="text-lg text-center text-gray-500">
+                {{ blog.date }} - {{ blog.author }}
+            </div>
+            <div class="mt-4 text-black text-2xl text-left">
+                {{ blog.content | safe }}
+            </div>
         </div>
-        <div class="blogContent">
-            {{ blog.content | safe }}
+
+        <div class="title-container">
+            <h3 class="container title lg:w-2/3">Commentaires</h3>
         </div>
-    </div>
-
-    <h3 class="blogDescription">Commentaires</h3>
-    <div class="addComments">
-        <form action="{% url 'Blog:blog_detail' blog.id %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button class="btnAddComments" type="submit"><i class="fa-solid fa-plus"></i></button>
-        </form>
-
-    </div>
-    {% for comment in comments %}
-        {% if not comment.parent %}
-        <div class="comment">
-            <div class="commentInfo">
-                {{ comment.date }} - {{ comment.name }}
-            </div>
-            <div class="commentContent">
-                {{ comment.comment}}
-            </div>
-            <button class="btnAddComments" onclick="document.getElementById('modalReply').style.display='block'"><i class="fa-solid fa-plus"></i></button>
-        </div>
-        {% for reply in comment.replies.all %}
-            <div class="comment reply">
-                <div class="commentInfo">
-                    {{ reply.date }} - {{ reply.name }}
-                </div>
-                <div class="commentContent">
-                    {{ reply.comment }}
-                </div>
-                <button class="btnAddComments" onclick="document.getElementById('modalReply').style.display='block'"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <div class="modal" id="modalReply">
-                <div class="addComments modal-content">
-                    <span class="close" onclick="document.getElementById('modalReply').style.display='none'">&times;</span>
-                    <h3>Répondre à {{ reply.name }}</h3>
-                    <form action="{% url 'Blog:blog_reply' blog.id reply.id %}" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button class="btnAddComments" type="submit"><i class="fa-solid fa-plus"></i></button>
-                    </form>
-                </div>
-            </div>
-        {% endfor %}
 
 
-
-        <div class="modal" id="modalReply">
-            <div class="addComments modal-content">
-                <span class="close" onclick="document.getElementById('modalReply').style.display='none'">&times;</span>
-                <h3>Répondre à {{ comment.name }}</h3>
-                <form action="{% url 'Blog:blog_reply' blog.id comment.id %}" method="post">
+        <div class="mt-4 flex flex-row justify-center">
+            <form action="{% url 'Blog:blog_detail' blog.id %}" method="post"
+                  class="container w-full lg:w-1/2">
+                <div class="flex flex-col justify-evenly ">
+                    <h3 class="text-3xl mb-3">Ajouter un commentaire</h3>
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="btnAddComments" type="submit"><i class="fa-solid fa-plus"></i></button>
-                </form>
-            </div>
+                    {{ form.as_div }}
+                </div>
+                <button class="bg-contrast text-white p-2 rounded float-right text-3xl" type="submit">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </form>
         </div>
+
+        {% if comments %}
+            <div class="container">
+            {% for comment in comments %}
+                <div class="flex flex-row justify-between w-full">
+                    <div>
+                        <div class="text-3xl">
+                            {{ comment.name }} - <span class="font-light">{{ comment.date }}</span>
+                        </div>
+                        <div class="mt-2 text-2xl">
+                            {{ comment.comment}}
+                        </div>
+                    </div>
+                    {# <button class="send-button" onclick="document.getElementById('modalReply').style.display='block'">#}
+                        {#<i class="fa-solid fa-reply"></i>#}
+                    {#</button>#}
+
+                </div>
+                {% for reply in comment.replies.none %}
+                        <div class="flex flex-row justify-between w-full mt-10">
+                            <div class="ml-10">
+                                <div class="text-lg">
+                                    {{ reply.name }} - <span class="font-light">{{ reply.date }}</span>
+                                </div>
+                                <div class="mt-2">
+                                    {{ reply.comment }}
+                                </div>
+                            </div>
+                            <button class="send-button" onclick="document.getElementById('modalReply').style.display='block'">
+                                <i class="fa-solid fa-reply"></i>
+                            </button>
+                        </div>
+                {% endfor %}
+                <hr>
+            {% endfor %}
+            </div>
         {% endif %}
-    {% endfor %}
+    </div>
 </div>
-
-
-
-</body>
+{% endblock %}

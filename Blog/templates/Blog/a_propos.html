@@ -1,30 +1,27 @@
 {% include 'Blog/utils/css.html' %}
 {% include 'Blog/utils/header.html' %}
 
-<head>
-    <title>A Propos</title>
-</head>
-<body>
+<div class="flex flex-row justify-center">
 
-<div class="content">
-    <div class="blogDescription" style="text-align: left">
-        <h1>A propos</h1>
-        <p>
-            Ce site web a été réalisé pour le lab'info de Polytech Tours. Il a
-            pour but de regrouper des informations plus ou moins simples sur
-            l'informatique, hardware ou software. Les différents blogs ont pour
-            but d'être facilement compréhensible et suffisamment complet.
-        </p>
-        <p>
-            Le site contient {{ blogs.all.count }} blogs et
-            {{ comments.all.count }} commentaires.
-        </p>
-        <p>
-            Ce site web a été réalisé par Mattéo Langlois avec le framework
-            python Django. Les icônes viennent de Fontawesome.
-        </p>
+    <div class="w-full lg:p-4 lg:w-1/3">
+        <div class="container text-left">
+            <h1 class="text-3xl font-semibold">A propos</h1>
+            <p class="mt-4 text-lg">
+                Ce site web a été réalisé pour le Lab'info de Polytech Tours. Il a
+                pour but de regrouper des informations plus ou moins simples sur
+                l'informatique, hardware ou software. Les différents blogs ont pour
+                but d'être facilement compréhensible et suffisamment complet.
+            </p>
+            <p class="mt-4 text-lg">
+                Le site contient <span class="font-semibold">{{ blogs.all.count }}</span> blogs et
+                <span class="font-semibold">{{ comments.all.count }}</span> commentaires.
+            </p>
+            <p class="mt-4 text-lg">
+                Ce site web a été réalisé par Mattéo Langlois avec le framework
+                python Django et le Framework JavaScript Tailwind pour le
+                front-end. Les icônes viennent de Fontawesome.
+            </p>
 
+        </div>
     </div>
-
 </div>
-</body>

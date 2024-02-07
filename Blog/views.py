@@ -8,12 +8,13 @@ def blog_list(request):
         "blogs": Blog.objects.filter(visible=True).order_by("-date"),
         "unpublished_blogs": Blog.objects.filter(visible=False).order_by("-date"),
         "user": request.user,
+        "title": "Lab'info"
     })
 
 
 def blog_detail(request, blog_id):
     blog_choosed = Blog.objects.get(id=blog_id)
-    comments = blog_choosed.comments.all().order_by("-date")
+    comments = blog_choosed.comments.filter(parent=None).order_by("-date")
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -23,14 +24,16 @@ def blog_detail(request, blog_id):
             comment.save()
             return render(request, 'Blog/blog.html', {
                 "blog": blog_choosed,
-                "comments": comments
+                "comments": comments,
+                "title": blog_choosed.title
             })
     else:
         form = CommentForm()
     return render(request, 'Blog/blog.html', {
         "blog": blog_choosed,
         "comments": comments,
-        "form": form
+        "form": form,
+        "title": blog_choosed.title
     })
 
 
@@ -47,20 +50,24 @@ def blog_reply(request, blog_id, comment_id):
             comment.save()
             return render(request, 'Blog/blog.html', {
                 "blog": blog_choosed,
-                "comments": comments
+                "comments": comments,
+                "title": blog_choosed.title
             })
     else:
         form = CommentForm()
     return render(request, 'Blog/blog.html', {
         "blog": blog_choosed,
         "comments": comments,
-        "form": form
+        "form": form,
+        "title": blog_choosed.title
     })
+
 
 def blog_a_propos(request):
     return render(request, 'Blog/a_propos.html', {
         "blogs": Blog.objects.all(),
         "comments": Comment.objects.all(),
+        "title": "A propos"
     })
 
 

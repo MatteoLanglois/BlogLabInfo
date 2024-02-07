@@ -15,7 +15,7 @@ class Theme(models.Model):
         return self.theme_name
 
     def print_icon(self):
-        return f"<i class='theme-icon {self.theme_icon}'></i>"
+        return f"<i class='text-4xl {self.theme_icon}'></i>"
 
 
 class Blog(models.Model):
