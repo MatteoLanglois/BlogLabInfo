@@ -1,5 +1,17 @@
 {% extends "Blog/utils/header.html" %}
 {% block content %}
+
+<script>
+    function openModal(idForm, idBtn) {
+        document.getElementById(idForm).classList.remove('hidden');
+        document.getElementById(idBtn).classList.add('hidden');
+    }
+
+    function closeModal(idForm, idBtn) {
+        document.getElementById(idForm).classList.add('hidden');
+        document.getElementById(idBtn).classList.remove('hidden');
+    }
+</script>
 <div class="flex flex-row justify-center">
     <div class="w-full lg:p-4 lg:w-1/2">
         <div class="container">
@@ -18,17 +30,7 @@
 
 
         <div class="mt-4 flex flex-row justify-center">
-            <form action="{% url 'Blog:blog_detail' blog.id %}" method="post"
-                  class="container w-full lg:w-1/2">
-                <div class="flex flex-col justify-evenly ">
-                    <h3 class="text-3xl mb-3">Ajouter un commentaire</h3>
-                    {% csrf_token %}
-                    {{ form.as_div }}
-                </div>
-                <button class="bg-contrast text-white p-2 rounded float-right text-3xl" type="submit">
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-            </form>
+            {% include 'Blog/forms/commentForm.html' %}
         </div>
 
         {% if comments %}
@@ -43,13 +45,14 @@
                             {{ comment.comment}}
                         </div>
                     </div>
-                    {# <button class="send-button" onclick="document.getElementById('modalReply').style.display='block'">#}
-                        {#<i class="fa-solid fa-reply"></i>#}
-                    {#</button>#}
-
+                    <button id="btn-{{ comment.id }}" class="text-4xl send-button"
+                            onclick="openModal('modalReply-{{ comment.id }}', 'btn-{{ comment.id }}')">
+                        <i class="fa-solid fa-reply"></i>
+                    </button>
+                    {% include 'Blog/forms/replyForm.html' with id=comment.id %}
                 </div>
-                {% for reply in comment.replies.none %}
-                        <div class="flex flex-row justify-between w-full mt-10">
+                {% for reply in comment.replies.all|dictsort:"date" %}
+                        <div class="flex flex-row justify-between lg:w-4/5 mt-10">
                             <div class="ml-10">
                                 <div class="text-lg">
                                     {{ reply.name }} - <span class="font-light">{{ reply.date }}</span>
@@ -58,9 +61,11 @@
                                     {{ reply.comment }}
                                 </div>
                             </div>
-                            <button class="send-button" onclick="document.getElementById('modalReply').style.display='block'">
+                            <button id="btnBis-{{ reply.id }}"  class="text-2xl send-button"
+                                    onclick="openModal('modalReply-{{ reply.id }}', 'btn-{{ reply.id }}')">
                                 <i class="fa-solid fa-reply"></i>
                             </button>
+                            {% include 'Blog/forms/replyForm.html' with id=reply.id %}
                         </div>
                 {% endfor %}
                 <hr>

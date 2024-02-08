@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Blog, Comment
 from .forms import CommentForm
 
@@ -22,11 +22,7 @@ def blog_detail(request, blog_id):
             comment.parent = None
             comment.blog = blog_choosed
             comment.save()
-            return render(request, 'Blog/blog.html', {
-                "blog": blog_choosed,
-                "comments": comments,
-                "title": blog_choosed.title
-            })
+            return redirect('Blog:blog_detail', blog_id=blog_id)
     else:
         form = CommentForm()
     return render(request, 'Blog/blog.html', {
@@ -48,11 +44,7 @@ def blog_reply(request, blog_id, comment_id):
             comment.parent = comment_choosed
             comment.blog = blog_choosed
             comment.save()
-            return render(request, 'Blog/blog.html', {
-                "blog": blog_choosed,
-                "comments": comments,
-                "title": blog_choosed.title
-            })
+            return redirect('Blog:blog_detail', blog_id=blog_id)
     else:
         form = CommentForm()
     return render(request, 'Blog/blog.html', {

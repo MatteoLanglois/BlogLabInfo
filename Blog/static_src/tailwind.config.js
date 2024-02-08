@@ -74,8 +74,15 @@ module.exports = {
                 },
                 '.send-button': {
                     color: '#734D8C',
-                    fontSize: '2.5rem',
                     aspectRatio: '1',
+                    scale: '1',
+                    transition: 'all 0.3s',
+                    transitionTimingFunction: 'ease-in-out',
+                    cursor: 'pointer',
+                    '&:hover': {
+                        scale: '1.1',
+                        color: '#756AB6',
+                    }
                 },
                 '.transition-card': {
                     transition: 'all 0.3s',
